@@ -16,7 +16,7 @@ RODIN.start();
 const sphericalSkybox = new RODIN.Sphere(72, 36, 36,
     new THREE.MeshBasicMaterial({
         side: THREE.BackSide,
-        map: RODIN.Loader.loadTexture('images/1.jpg')
+        map: RODIN.Loader.loadTexture('images/scene1.jpg')
     }));
 RODIN.Scene.add(sphericalSkybox);
 //vahe
