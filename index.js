@@ -19,3 +19,4 @@ const sphericalSkybox = new RODIN.Sphere(72, 36, 36,
         map: RODIN.Loader.loadTexture('images/1.jpg')
     }));
 RODIN.Scene.add(sphericalSkybox);
+//vahe
