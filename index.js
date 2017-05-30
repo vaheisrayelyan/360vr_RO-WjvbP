@@ -13,6 +13,19 @@ RODIN.start();
  * Load texture from URL
  * Add to the scene
  */
+
+var texture, material, plane;
+texture = THREE.ImageUtils.loadTexture( "images/hotspot.png" );
+texture.repeat.set(1, 1);
+material = new THREE.MeshLambertMaterial({ map : texture });
+plane = new THREE.Mesh(new THREE.PlaneGeometry(144, 80), material);
+plane.material.side = THREE.DoubleSide;
+plane.rotation.z = Math.PI / 2;
+
+var hotspot = new RODIN.Sculpt(plane);
+console.log(hotspot);
+
+
 const scene1 = new RODIN.Sphere(72, 36, 36,
     new THREE.MeshBasicMaterial({
         map: RODIN.Loader.loadTexture('images/scene1.jpg')
