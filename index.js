@@ -3,14 +3,19 @@ import {screen} from './src/Screen.js';
 import './src/Socket.js';
 
 RODIN.start();
-RODIN.Scene.add(new RODIN.Sculpt(new THREE.AmbientLight(0xffffff, 0.1)));
+//RODIN.Scene.add(new RODIN.Sculpt(new THREE.AmbientLight(0xffffff, 0.1)));
 
 /**
- * Load our deck.obj model, when it will be ready add to the scene
+ * Create spherical skybox
+ * Radius is 72 meters
+ * Number of segments is 36, by horizontal and vertical axes
+ * Set material rendering side to back
+ * Load texture from URL
+ * Add to the scene
  */
-const deck = new RODIN.Sculpt('./models/deck/deck.obj');
-deck.on(RODIN.CONST.READY, () => {
-    RODIN.Scene.add(deck);
-});
-
-RODIN.Scene.add(screen);
+const sphericalSkybox = new RODIN.Sphere(72, 36, 36,
+    new THREE.MeshBasicMaterial({
+        side: THREE.BackSide,
+        map: RODIN.Loader.loadTexture('images/1.jpg')
+    }));
+RODIN.Scene.add(sphericalSkybox);
