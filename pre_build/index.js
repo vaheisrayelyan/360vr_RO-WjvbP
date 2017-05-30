@@ -41,7 +41,7 @@ System.register(['rodin/core', './src/Screen.js', './src/Socket.js'], function (
 
             scene3.scale.set(-1, 1, 1);
 
-            RODIN.Scene.add(scene2);
+            RODIN.Scene.add(scene1);
             //vahe
         }
     };

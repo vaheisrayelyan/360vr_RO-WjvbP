@@ -13,11 +13,23 @@ RODIN.start();
  * Load texture from URL
  * Add to the scene
  */
-const sphericalSkybox = new RODIN.Sphere(72, 36, 36,
+const scene1 = new RODIN.Sphere(72, 36, 36,
     new THREE.MeshBasicMaterial({
-        side: THREE.BackSide,
         map: RODIN.Loader.loadTexture('images/scene1.jpg')
     }));
-sphericalSkybox.scale.x=-1;
-RODIN.Scene.add(sphericalSkybox);
+scene1.scale.set(-1,1,1);
+
+const scene2 = new RODIN.Sphere(72, 36, 36,
+    new THREE.MeshBasicMaterial({
+        map: RODIN.Loader.loadTexture('images/scene2.jpg')
+    }));
+scene2.scale.set(-1,1,1);
+
+const scene3 = new RODIN.Sphere(72, 36, 36,
+    new THREE.MeshBasicMaterial({
+        map: RODIN.Loader.loadTexture('images/scene3.jpg')
+    }));
+scene3.scale.set(-1,1,1);
+
+RODIN.Scene.add(scene1);
 //vahe
