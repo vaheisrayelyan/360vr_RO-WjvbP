@@ -14,23 +14,36 @@ RODIN.start();
  * Add to the scene
  */
 
-var texture, material, plane;
-texture = THREE.ImageUtils.loadTexture( "images/hotspot.png" );
-texture.repeat.set(1, 1);
-material = new THREE.MeshLambertMaterial({ map : texture });
-plane = new THREE.Mesh(new THREE.PlaneGeometry(144, 80), material);
-plane.material.side = THREE.DoubleSide;
-plane.rotation.z = Math.PI / 2;
 
-var hotspot = new RODIN.Sculpt(plane);
-console.log(hotspot);
+
+const exp360 = new RODIN.Sculpt();
+RODIN.Scene.add(exp360);
+
+var hotspotObject = new RODIN.Plane(1,0.555, new THREE.MeshBasicMaterial({
+    map: RODIN.Loader.loadTexture("images/hotspot.png"),
+        transparent: true
+}));
+
+var hotspot1 = hotspotObject;
+var hotspot2 = hotspotObject;
+
+hotspot1.position.set(3.4, 0, 3.4);
+hotspot1.rotation.x = -Math.PI / 2;
+hotspot1.rotation.z = -Math.PI / 1.4;
+
+hotspot2.position.set(2, 0, 2);
+hotspot2.rotation.x = -Math.PI / 2;
+hotspot2.rotation.z = -Math.PI / 1.4;
 
 
 const scene1 = new RODIN.Sphere(72, 36, 36,
     new THREE.MeshBasicMaterial({
         map: RODIN.Loader.loadTexture('images/scene1.jpg')
     }));
+    
 scene1.scale.set(-1,1,1);
+exp360.add(hotspot1);
+exp360.add(hotspot2);
 
 const scene2 = new RODIN.Sphere(72, 36, 36,
     new THREE.MeshBasicMaterial({
@@ -44,5 +57,5 @@ const scene3 = new RODIN.Sphere(72, 36, 36,
     }));
 scene3.scale.set(-1,1,1);
 
-RODIN.Scene.add(scene1);
+exp360.add(scene1);
 //vahe
