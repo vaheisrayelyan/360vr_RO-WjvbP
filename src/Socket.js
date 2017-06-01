@@ -3,6 +3,8 @@ import {Character} from './Character.js';
 import {screen} from './Screen.js';
 import {initialPositions} from './initialPositions.js';
 
+import changeEnvPublic from '../index.js';
+
 /**
  * Creates an empty object for saving active users
  * @type {{}}
@@ -206,10 +208,27 @@ screen.on('change', (evt) => {
     }
 });
 
+
+export default function changeEnvSocket(texture, rot_angle) {
+        if (SS.Socket) {
+        SS.setData({texture360: texture, rotation360: rot_angle});
+        SS.broadcastToAll('changeEnvGlobal', {texture360: texture, rotation360: rot_angle, socketId: SS.Socket.id});
+    }
+    
+}
+
 /**
  * Shows a new slide on the screen.
  */
 SS.onMessage('changeMainPicture', (data) => {
     if (data.socketId != SS.Socket.id)
         screen.show(data.imageIndex);
+});
+
+
+
+SS.onMessage('changeEnvGlobal', (data) => {
+    if (data.socketId != SS.Socket.id) {
+       changeEnvPublic(data.texture360, data.rotation360);
+    }
 });

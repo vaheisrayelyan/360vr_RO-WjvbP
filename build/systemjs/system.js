@@ -1,18 +1,9 @@
-"use strict";
-
 System.register([], function (_export, _context) {
   "use strict";
-
-  var _typeof;
 
   return {
     setters: [],
     execute: function () {
-      _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-        return typeof obj;
-      } : function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-      };
       /*
        * SystemJS v0.20.5 Dev
        */
@@ -32,22 +23,20 @@ System.register([], function (_export, _context) {
             var a,
                 s = !n || "/" !== t[n.length];if (s ? (void 0 === t && r(e, t), a = t) : "/" === t[n.length + 1] ? "file:" !== n ? (a = t.substr(n.length + 2), a = a.substr(a.indexOf("/") + 1)) : a = t.substr(8) : a = t.substr(n.length + 1), "/" === o) {
               if (!s) return t.substr(0, t.length - a.length - 1) + e;r(e, t);
-            }for (var u = a.substr(0, a.lastIndexOf("/") + 1) + e, l = [], c = void 0, f = 0; f < u.length; f++) {
-              if (void 0 === c) {
-                if ("." !== u[f]) c = f;else {
-                  if ("." !== u[f + 1] || "/" !== u[f + 2] && f !== u.length - 2) {
-                    if ("/" !== u[f + 1] && f !== u.length - 1) {
-                      c = f;continue;
-                    }f += 1;
-                  } else l.pop(), f += 2;s && 0 === l.length && r(e, t), f === u.length && l.push("");
-                }
-              } else "/" === u[f] && (l.push(u.substr(c, f - c + 1)), c = void 0);
-            }return void 0 !== c && l.push(u.substr(c, u.length - c)), t.substr(0, t.length - a.length) + l.join("");
+            }for (var u = a.substr(0, a.lastIndexOf("/") + 1) + e, l = [], c = void 0, f = 0; f < u.length; f++) if (void 0 === c) {
+              if ("." !== u[f]) c = f;else {
+                if ("." !== u[f + 1] || "/" !== u[f + 2] && f !== u.length - 2) {
+                  if ("/" !== u[f + 1] && f !== u.length - 1) {
+                    c = f;continue;
+                  }f += 1;
+                } else l.pop(), f += 2;s && 0 === l.length && r(e, t), f === u.length && l.push("");
+              }
+            } else "/" === u[f] && (l.push(u.substr(c, f - c + 1)), c = void 0);return void 0 !== c && l.push(u.substr(c, u.length - c)), t.substr(0, t.length - a.length) + l.join("");
           }var d = e.indexOf(":");return -1 !== d ? ot && ":" === e[1] && "\\" === e[2] && e[0].match(/[a-z]/i) ? "file:///" + e.replace(/\\/g, "/") : e : void 0;
         }function o(e) {
           if (e.values) return e.values();if ("undefined" == typeof Symbol || !Symbol.iterator) throw new Error("Symbol.iterator not supported in this browser");var t = {};return t[Symbol.iterator] = function () {
             var t = Object.keys(e),
-                r = 0;return { next: function next() {
+                r = 0;return { next: function () {
                 return r < t.length ? { value: e[t[r++]], done: !1 } : { value: void 0, done: !0 };
               } };
           }, t;
@@ -62,7 +51,7 @@ System.register([], function (_export, _context) {
         }function l(e) {
           Object.defineProperty(this, ht, { value: e }), Object.keys(e).forEach(c, this);
         }function c(e) {
-          Object.defineProperty(this, e, { enumerable: !0, get: function get() {
+          Object.defineProperty(this, e, { enumerable: !0, get: function () {
               return this[ht][e];
             } });
         }function f() {
@@ -100,18 +89,12 @@ System.register([], function (_export, _context) {
               a = !1,
               s = n.call(at, function (e, t) {
             if (!a) {
-              if ("object" == (typeof e === "undefined" ? "undefined" : _typeof(e))) for (var r in e) {
-                "__useDefault" !== r && (o[r] = e[r]);
-              } else o[e] = t;a = !0;for (var n = 0; n < i.length; n++) {
-                i[n](o);
-              }return a = !1, t;
+              if ("object" == typeof e) for (var r in e) "__useDefault" !== r && (o[r] = e[r]);else o[e] = t;a = !0;for (var n = 0; n < i.length; n++) i[n](o);return a = !1, t;
             }
           }, new k(e, t.key));r.setters = s.setters, r.execute = s.execute, s.exports && (r.moduleObj = o = s.exports);
         }function b(e, r, n, o, i, a) {
           return (n.depsInstantiatePromise || (n.depsInstantiatePromise = Promise.resolve().then(function () {
-            for (var t = Array(n.dependencies.length), a = 0; a < n.dependencies.length; a++) {
-              t[a] = m(e, n.dependencies[a], r.key, o, i, e.trace && (n.depMap = {}));
-            }return Promise.all(t);
+            for (var t = Array(n.dependencies.length), a = 0; a < n.dependencies.length; a++) t[a] = m(e, n.dependencies[a], r.key, o, i, e.trace && (n.depMap = {}));return Promise.all(t);
           }).then(function (e) {
             if (n.dependencyInstantiations = e, n.setters) for (var t = 0; t < e.length; t++) {
               var r = n.setters[t];if (r) {
@@ -140,31 +123,21 @@ System.register([], function (_export, _context) {
           if (t.module) return t.module;if (r.error) throw r.error;if (i && -1 !== i.indexOf(t)) return t.linkRecord.moduleObj;var a = S(e, t, r, n, o, r.setters ? [] : i || []);if (a) throw w(e, t), a;return t.module;
         }function O(e, t, r, n, o, i, a) {
           return function (s) {
-            for (var u = 0; u < r.length; u++) {
-              if (r[u] === s) {
-                var c,
-                    f = n[u];return c = f instanceof l ? f : x(e, f, f.linkRecord, o, i, a), c.__useDefault ? c.default : c;
-              }
+            for (var u = 0; u < r.length; u++) if (r[u] === s) {
+              var c,
+                  f = n[u];return c = f instanceof l ? f : x(e, f, f.linkRecord, o, i, a), c.__useDefault ? c.default : c;
             }throw new Error("Module " + s + " not declared as a System.registerDynamic dependency of " + t);
           };
         }function S(e, r, n, o, i, a) {
-          a.push(r);var s;if (n.setters) for (var u, c, f = 0; f < n.dependencies.length; f++) {
-            if (u = n.dependencyInstantiations[f], !(u instanceof l) && (c = u.linkRecord, c && -1 === a.indexOf(u) && (s = c.error ? c.error : S(e, u, c, o, i, c.setters ? a : [])), s)) return n.error = t(s, "Evaluating " + r.key);
-          }if (n.execute) if (n.setters) s = E(n.execute);else {
+          a.push(r);var s;if (n.setters) for (var u, c, f = 0; f < n.dependencies.length; f++) if (u = n.dependencyInstantiations[f], !(u instanceof l) && (c = u.linkRecord, c && -1 === a.indexOf(u) && (s = c.error ? c.error : S(e, u, c, o, i, c.setters ? a : [])), s)) return n.error = t(s, "Evaluating " + r.key);if (n.execute) if (n.setters) s = E(n.execute);else {
             var d = { id: r.key },
-                p = n.moduleObj;Object.defineProperty(d, "exports", { configurable: !0, set: function set(e) {
+                p = n.moduleObj;Object.defineProperty(d, "exports", { configurable: !0, set: function (e) {
                 p.default = e;
-              }, get: function get() {
+              }, get: function () {
                 return p.default;
-              } });var g = O(e, r.key, n.dependencies, n.dependencyInstantiations, o, i, a);if (!n.executingRequire) for (var f = 0; f < n.dependencies.length; f++) {
-              g(n.dependencies[f]);
-            }if (s = j(n.execute, g, p.default, d), d.exports !== p.default && (p.default = d.exports), p.default && p.default.__esModule) for (var h in p.default) {
-              Object.hasOwnProperty.call(p.default, h) && "default" !== h && (p[h] = p.default[h]);
-            }
+              } });var g = O(e, r.key, n.dependencies, n.dependencyInstantiations, o, i, a);if (!n.executingRequire) for (var f = 0; f < n.dependencies.length; f++) g(n.dependencies[f]);if (s = j(n.execute, g, p.default, d), d.exports !== p.default && (p.default = d.exports), p.default && p.default.__esModule) for (var h in p.default) Object.hasOwnProperty.call(p.default, h) && "default" !== h && (p[h] = p.default[h]);
           }if (s) return n.error = t(s, "Evaluating " + r.key);if (o[r.key] = r.module = new l(n.moduleObj), !n.setters) {
-            if (r.importerSetters) for (var f = 0; f < r.importerSetters.length; f++) {
-              r.importerSetters[f](r.module);
-            }r.importerSetters = void 0;
+            if (r.importerSetters) for (var f = 0; f < r.importerSetters.length; f++) r.importerSetters[f](r.module);r.importerSetters = void 0;
           }r.linkRecord = void 0;
         }function E(e) {
           try {
@@ -190,18 +163,12 @@ System.register([], function (_export, _context) {
                 n = t.substr(it ? 8 : 7);wt = new r(n), wt.paths = r._nodeModulePaths(n);
           }return wt.require(e);
         }function L(e, t) {
-          for (var r in t) {
-            Object.hasOwnProperty.call(t, r) && (e[r] = t[r]);
-          }return e;
+          for (var r in t) Object.hasOwnProperty.call(t, r) && (e[r] = t[r]);return e;
         }function A(e, t) {
-          for (var r in t) {
-            Object.hasOwnProperty.call(t, r) && void 0 === e[r] && (e[r] = t[r]);
-          }return e;
+          for (var r in t) Object.hasOwnProperty.call(t, r) && void 0 === e[r] && (e[r] = t[r]);return e;
         }function I(e, t, r) {
-          for (var n in t) {
-            if (Object.hasOwnProperty.call(t, n)) {
-              var o = t[n];void 0 === e[n] ? e[n] = o : o instanceof Array && e[n] instanceof Array ? e[n] = [].concat(r ? o : e[n]).concat(r ? e[n] : o) : "object" == (typeof o === "undefined" ? "undefined" : _typeof(o)) && null !== o && "object" == _typeof(e[n]) ? e[n] = (r ? A : L)(L({}, e[n]), o) : r || (e[n] = o);
-            }
+          for (var n in t) if (Object.hasOwnProperty.call(t, n)) {
+            var o = t[n];void 0 === e[n] ? e[n] = o : o instanceof Array && e[n] instanceof Array ? e[n] = [].concat(r ? o : e[n]).concat(r ? e[n] : o) : "object" == typeof o && null !== o && "object" == typeof e[n] ? e[n] = (r ? A : L)(L({}, e[n]), o) : r || (e[n] = o);
           }
         }function F(e) {
           if (!jt && !Rt) {
@@ -219,16 +186,12 @@ System.register([], function (_export, _context) {
           }function a(t) {
             s(), o(new Error("Fetching " + e));
           }function s() {
-            for (var e = 0; e < Pt.length; e++) {
-              if (Pt[e].err === a) {
-                Pt.splice(e, 1);break;
-              }
+            for (var e = 0; e < Pt.length; e++) if (Pt[e].err === a) {
+              Pt.splice(e, 1);break;
             }u.removeEventListener("load", i, !1), u.removeEventListener("error", a, !1), document.head.removeChild(u);
           }if (e = e.replace(/#/g, "%23"), Et) return K(e, n, o);var u = document.createElement("script");u.type = "text/javascript", u.charset = "utf-8", u.async = !0, t && (u.crossOrigin = t), r && (u.integrity = r), u.addEventListener("load", i, !1), u.addEventListener("error", a, !1), u.src = e, document.head.appendChild(u);
         }function T(e, t) {
-          for (var r = e.split("."); r.length;) {
-            t = t[r.shift()];
-          }return t;
+          for (var r = e.split("."); r.length;) t = t[r.shift()];return t;
         }function U(e, t, r) {
           var o = z(t, r);if (o) {
             var i = t[o] + r.substr(o.length),
@@ -260,7 +223,7 @@ System.register([], function (_export, _context) {
           return "file:///" != e.substr(0, 8) ? Promise.reject(new Error('Unable to fetch "' + e + '". Only file URLs of the form file:/// supported running in Node.')) : (Mt = Mt || require("fs"), e = it ? e.replace(/\//g, "\\").substr(8) : e.substr(7), new Promise(function (t, r) {
             Mt.readFile(e, function (e, o) {
               if (e) return r(e);if (n) t(o);else {
-                var i = o + "";"\uFEFF" === i[0] && (i = i.substr(1)), t(i);
+                var i = o + "";"\ufeff" === i[0] && (i = i.substr(1)), t(i);
               }
             });
           }));
@@ -331,10 +294,8 @@ System.register([], function (_export, _context) {
           return { extension: "", deps: void 0, format: void 0, loader: void 0, scriptLoad: void 0, globals: void 0, nonce: void 0, integrity: void 0, sourceMap: void 0, exports: void 0, encapsulateGlobal: !1, crossOrigin: void 0, cjsRequireDetection: !0, cjsDeferDepsExecute: !1, esModule: !1 };
         }function te(e, t, r) {
           r.load = r.load || ee();var n,
-              o = 0;for (var i in e.meta) {
-            if (n = i.indexOf("*"), -1 !== n && i.substr(0, n) === t.substr(0, n) && i.substr(n + 1) === t.substr(t.length - i.length + n + 1)) {
-              var a = i.split("/").length;a > o && (o = a), I(r.load, e.meta[i], o !== a);
-            }
+              o = 0;for (var i in e.meta) if (n = i.indexOf("*"), -1 !== n && i.substr(0, n) === t.substr(0, n) && i.substr(n + 1) === t.substr(t.length - i.length + n + 1)) {
+            var a = i.split("/").length;a > o && (o = a), I(r.load, e.meta[i], o !== a);
           }if (e.meta[t] && I(r.load, e.meta[t], !1), r.packageKey) {
             var s = t.substr(r.packageKey.length + 1),
                 u = {};if (r.packageConfig.meta) {
@@ -367,7 +328,7 @@ System.register([], function (_export, _context) {
         }function ae(e, t, r) {
           return t.substr(0, e.length) === e && r.length > e.length ? !1 : !0;
         }function se(e, t, r, n, o, i, a, s) {
-          "/" === i[i.length - 1] && (i = i.substr(0, i.length - 1));var u = r.map[o];if ("object" == (typeof u === "undefined" ? "undefined" : _typeof(u))) throw new Error("Synchronous conditional normalization not supported sync normalizing " + o + " in " + n);if (ae(o, u, i) && "string" == typeof u) return Q.call(this, t, u + i.substr(o.length), n + "/", a, a, s);
+          "/" === i[i.length - 1] && (i = i.substr(0, i.length - 1));var u = r.map[o];if ("object" == typeof u) throw new Error("Synchronous conditional normalization not supported sync normalizing " + o + " in " + n);if (ae(o, u, i) && "string" == typeof u) return Q.call(this, t, u + i.substr(o.length), n + "/", a, a, s);
         }function ue(e, t, r, n, o, i, a) {
           if (!o) {
             if (!r.main) return Promise.resolve(n);o = "./" === r.main.substr(0, 2) ? r.main.substr(2) : r.main;
@@ -430,10 +391,10 @@ System.register([], function (_export, _context) {
           }
         }function ye(e, t) {
           var r = {};for (var n in e) {
-            var o = e[n];t > 1 ? "object" == (typeof o === "undefined" ? "undefined" : _typeof(o)) ? r[n] = ye(o, t - 1) : "packageConfig" !== n && (r[n] = o) : r[n] = o;
+            var o = e[n];t > 1 ? "object" == typeof o ? r[n] = ye(o, t - 1) : "packageConfig" !== n && (r[n] = o) : r[n] = o;
           }return r;
         }function be(e, t) {
-          var r = e[t];return r instanceof Array ? e[t].concat([]) : "object" == (typeof r === "undefined" ? "undefined" : _typeof(r)) ? ye(r, 3) : e[t];
+          var r = e[t];return r instanceof Array ? e[t].concat([]) : "object" == typeof r ? ye(r, 3) : e[t];
         }function we(e) {
           if (e) {
             if (-1 !== xr.indexOf(e)) return be(this[Ot], e);throw new Error('"' + e + '" is not a valid configuration name. Must be one of ' + xr.join(", ") + ".");
@@ -448,9 +409,7 @@ System.register([], function (_export, _context) {
               i = i || e.baseURL;
             }), i = i || e.baseURL, i && (o.baseURL = n(i, rt) || n("./" + i, rt), "/" !== o.baseURL[o.baseURL.length - 1] && (o.baseURL += "/")), e.paths && L(o.paths, e.paths), ve(r, e, function (e) {
               e.paths && L(o.paths, e.paths);
-            });for (var a in o.paths) {
-              -1 !== o.paths[a].indexOf("*") && (M.call(o, "Path config " + a + " -> " + o.paths[a] + " is no longer supported as wildcards are deprecated."), delete o.paths[a]);
-            }
+            });for (var a in o.paths) -1 !== o.paths[a].indexOf("*") && (M.call(o, "Path config " + a + " -> " + o.paths[a] + " is no longer supported as wildcards are deprecated."), delete o.paths[a]);
           }if (e.defaultJSExtensions && M.call(o, "The defaultJSExtensions configuration option is deprecated.\n  Use packages defaultExtension instead.", !0), "boolean" == typeof e.pluginFirst && (o.pluginFirst = e.pluginFirst), e.map) for (var a in e.map) {
             var s = e.map[a];if ("string" == typeof s) o.map[a] = Y.call(r, o, s, void 0, !1, !1);else {
               var u = Y.call(r, o, a, void 0, !0, !0),
@@ -463,33 +422,23 @@ System.register([], function (_export, _context) {
                   g = Y.call(r, o, d.substr(0, p), void 0, !1, !1);c[f] = g + d.substr(p);
             }o.packageConfigPaths = c;
           }if (e.bundles) for (var a in e.bundles) {
-            for (var h = [], f = 0; f < e.bundles[a].length; f++) {
-              h.push(r.normalizeSync(e.bundles[a][f]));
-            }o.bundles[a] = h;
+            for (var h = [], f = 0; f < e.bundles[a].length; f++) h.push(r.normalizeSync(e.bundles[a][f]));o.bundles[a] = h;
           }if (e.packages) for (var a in e.packages) {
             if (a.match(/^([^\/]+:)?\/\/$/)) throw new TypeError('"' + a + '" is not a valid package name.');var u = Y.call(r, o, "/" !== a[a.length - 1] ? a + "/" : a, void 0, !0, !0);u = u.substr(0, u.length - 1), Oe(o.packages[u] = o.packages[u] || xe(), e.packages[a], u, !1, o);
-          }if (e.depCache) for (var a in e.depCache) {
-            o.depCache[r.normalizeSync(a)] = [].concat(e.depCache[a]);
-          }if (e.meta) for (var a in e.meta) {
-            if ("*" === a[0]) L(o.meta[a] = o.meta[a] || {}, e.meta[a]);else {
-              var m = Y.call(r, o, a, void 0, !0, !0);L(o.meta[m] = o.meta[m] || {}, e.meta[a]);
-            }
-          }"transpiler" in e && (o.transpiler = e.transpiler);for (var v in e) {
-            -1 === xr.indexOf(v) && -1 === Tt.indexOf(v) && (r[v] = e[v]);
-          }ve(r, e, function (e) {
+          }if (e.depCache) for (var a in e.depCache) o.depCache[r.normalizeSync(a)] = [].concat(e.depCache[a]);if (e.meta) for (var a in e.meta) if ("*" === a[0]) L(o.meta[a] = o.meta[a] || {}, e.meta[a]);else {
+            var m = Y.call(r, o, a, void 0, !0, !0);L(o.meta[m] = o.meta[m] || {}, e.meta[a]);
+          }"transpiler" in e && (o.transpiler = e.transpiler);for (var v in e) -1 === xr.indexOf(v) && -1 === Tt.indexOf(v) && (r[v] = e[v]);ve(r, e, function (e) {
             r.config(e, !0);
           });
         }function xe() {
           return { defaultExtension: void 0, main: void 0, format: void 0, meta: void 0, map: void 0, packageConfig: void 0, configured: !1 };
         }function Oe(e, t, r, n, o) {
-          for (var i in t) {
-            "main" === i || "format" === i || "defaultExtension" === i || "configured" === i ? n && void 0 !== e[i] || (e[i] = t[i]) : "map" === i ? (n ? A : L)(e.map = e.map || {}, t.map) : "meta" === i ? (n ? A : L)(e.meta = e.meta || {}, t.meta) : Object.hasOwnProperty.call(t, i) && M.call(o, '"' + i + '" is not a valid package configuration option in package ' + r);
-          }return void 0 === e.defaultExtension && (e.defaultExtension = "js"), void 0 === e.main && e.map && e.map["."] ? (e.main = e.map["."], delete e.map["."]) : "object" == _typeof(e.main) && (e.map = e.map || {}, e.map["./@main"] = e.main, e.main.default = e.main.default || "./", e.main = "@main"), e;
+          for (var i in t) "main" === i || "format" === i || "defaultExtension" === i || "configured" === i ? n && void 0 !== e[i] || (e[i] = t[i]) : "map" === i ? (n ? A : L)(e.map = e.map || {}, t.map) : "meta" === i ? (n ? A : L)(e.meta = e.meta || {}, t.meta) : Object.hasOwnProperty.call(t, i) && M.call(o, '"' + i + '" is not a valid package configuration option in package ' + r);return void 0 === e.defaultExtension && (e.defaultExtension = "js"), void 0 === e.main && e.map && e.map["."] ? (e.main = e.map["."], delete e.map["."]) : "object" == typeof e.main && (e.map = e.map || {}, e.map["./@main"] = e.main, e.main.default = e.main.default || "./", e.main = "@main"), e;
         }function Se(e) {
           return Ut ? $t + new Buffer(e).toString("base64") : "undefined" != typeof btoa ? $t + btoa(unescape(encodeURIComponent(e))) : "";
         }function Ee(e, t, r, n) {
           var o = e.lastIndexOf("\n");if (t) {
-            if ("object" != (typeof t === "undefined" ? "undefined" : _typeof(t))) throw new TypeError("load.metadata.sourceMap must be set to an object.");t = JSON.stringify(t);
+            if ("object" != typeof t) throw new TypeError("load.metadata.sourceMap must be set to an object.");t = JSON.stringify(t);
           }return (n ? "(function(System, SystemJS) {" : "") + e + (n ? "\n})(System, System);" : "") + ("\n//# sourceURL=" != e.substr(o, 15) ? "\n//# sourceURL=" + r + (t ? "!transpiled" : "") : "") + (t && Se(t) || "");
         }function je(e, t, r, n, o) {
           qt || (qt = document.head || document.body || document.documentElement);var i = document.createElement("script");i.text = Ee(t, r, n, !1);var a,
@@ -517,22 +466,14 @@ System.register([], function (_export, _context) {
               r = e.lastIndexOf("!");t = -1 !== r ? e.substr(0, r) : e;var n = t.split("/");return n.pop(), n = n.join("/"), { filename: Me(t), dirname: Me(n) };
         }function Ae(e) {
           function t(e, t) {
-            for (var r = 0; r < e.length; r++) {
-              if (e[r][0] < t.index && e[r][1] > t.index) return !0;
-            }return !1;
+            for (var r = 0; r < e.length; r++) if (e[r][0] < t.index && e[r][1] > t.index) return !0;return !1;
           }Lt.lastIndex = Vt.lastIndex = er.lastIndex = 0;var r,
               n = [],
               o = [],
               i = [];if (e.length / e.split("\n").length < 200) {
-            for (; r = er.exec(e);) {
-              o.push([r.index, r.index + r[0].length]);
-            }for (; r = Vt.exec(e);) {
-              t(o, r) || i.push([r.index + r[1].length, r.index + r[0].length - 1]);
-            }
-          }for (; r = Lt.exec(e);) {
-            if (!t(o, r) && !t(i, r)) {
-              var a = r[1].substr(1, r[1].length - 2);if (a.match(/"|'/)) continue;n.push(a);
-            }
+            for (; r = er.exec(e);) o.push([r.index, r.index + r[0].length]);for (; r = Vt.exec(e);) t(o, r) || i.push([r.index + r[1].length, r.index + r[0].length - 1]);
+          }for (; r = Lt.exec(e);) if (!t(o, r) && !t(i, r)) {
+            var a = r[1].substr(1, r[1].length - 2);if (a.match(/"|'/)) continue;n.push(a);
           }return n;
         }function Ie(e) {
           if (-1 === tr.indexOf(e)) {
@@ -543,14 +484,10 @@ System.register([], function (_export, _context) {
             }this(e, t);
           }
         }function Fe(e) {
-          if ("string" == typeof e) return T(e, at);if (!(e instanceof Array)) throw new Error("Global exports must be a string or array.");for (var t = {}, r = 0; r < e.length; r++) {
-            t[e[r].split(".").pop()] = T(e[r], at);
-          }return t;
+          if ("string" == typeof e) return T(e, at);if (!(e instanceof Array)) throw new Error("Global exports must be a string or array.");for (var t = {}, r = 0; r < e.length; r++) t[e[r].split(".").pop()] = T(e[r], at);return t;
         }function Ke(e, t, r, n) {
           var o = at.define;at.define = void 0;var i;if (r) {
-            i = {};for (var a in r) {
-              i[a] = at[a], at[a] = r[a];
-            }
+            i = {};for (var a in r) i[a] = at[a], at[a] = r[a];
           }return t || (Zt = {}, Object.keys(at).forEach(Ie, function (e, t) {
             Zt[e] = t;
           })), function () {
@@ -558,16 +495,12 @@ System.register([], function (_export, _context) {
                 r = t ? Fe(t) : {},
                 a = !!t;if ((!t || n) && Object.keys(at).forEach(Ie, function (o, i) {
               Zt[o] !== i && void 0 !== i && (n && (at[o] = void 0), t || (r[o] = i, void 0 !== e ? a || e === i || (a = !0) : e = i));
-            }), r = a ? r : e, i) for (var s in i) {
-              at[s] = i[s];
-            }return at.define = o, r;
+            }), r = a ? r : e, i) for (var s in i) at[s] = i[s];return at.define = o, r;
           };
         }function De(e, t) {
           e = e.replace(Vt, "");var r = e.match(or),
               n = (r[1].split(",")[t] || "require").replace(ir, ""),
-              o = ar[n] || (ar[n] = new RegExp(rr + n + nr, "g"));o.lastIndex = 0;for (var i, a = []; i = o.exec(e);) {
-            a.push(i[2] || i[3]);
-          }return a;
+              o = ar[n] || (ar[n] = new RegExp(rr + n + nr, "g"));o.lastIndex = 0;for (var i, a = []; i = o.exec(e);) a.push(i[2] || i[3]);return a;
         }function Te(e) {
           return function (t, r, n) {
             e(t, r, n), Object.defineProperty(n.exports, "__esModule", { value: !0 });
@@ -607,9 +540,7 @@ System.register([], function (_export, _context) {
             r.pluginModule = e, r.pluginLoad = { name: t, address: r.pluginArgument, source: void 0, metadata: r.load }, r.load.deps = r.load.deps || [];
           }) : kt;
         }function $e(e, t, r) {
-          var n = e.depCache[r];if (n) for (var o = 0; o < n.length; o++) {
-            t.normalize(n[o], r).then(F);
-          } else {
+          var n = e.depCache[r];if (n) for (var o = 0; o < n.length; o++) t.normalize(n[o], r).then(F);else {
             var i = !1;for (var a in e.bundles) {
               for (var o = 0; o < e.bundles[a].length; o++) {
                 var s = e.bundles[a][o];if (s == r) {
@@ -642,7 +573,7 @@ System.register([], function (_export, _context) {
           return Promise.resolve(r).then(function (t) {
             return "detect" === n.load.format && (n.load.format = void 0), Qe(t, n), n.pluginModule && n.pluginModule.translate ? (n.pluginLoad.source = t, Promise.resolve(n.pluginModule.translate.call(e, n.pluginLoad, n.traceOpts)).then(function (e) {
               if (n.load.sourceMap) {
-                if ("object" != _typeof(n.load.sourceMap)) throw new Error("metadata.load.sourceMap must be set to an object.");Ze(n.pluginLoad.address, n.load.sourceMap);
+                if ("object" != typeof n.load.sourceMap) throw new Error("metadata.load.sourceMap must be set to an object.");Ze(n.pluginLoad.address, n.load.sourceMap);
               }return "string" == typeof e ? e : n.pluginLoad.source;
             })) : t;
           }).then(function (r) {
@@ -659,26 +590,18 @@ System.register([], function (_export, _context) {
                 return e.newModule({ default: JSON.parse(r), __useDefault: !0 });case "amd":
                 var s = at.define;at.define = e.amdDefine, Ue(n.load.deps, n.load.esModule);var a = _e(e, r, n.load.sourceMap, t, n.load.integrity, n.load.nonce, !1);if (i = o(), i || (qe(e), i = o()), at.define = s, a) throw a;break;case "cjs":
                 var u = n.load.deps,
-                    l = (n.load.deps || []).concat(n.load.cjsRequireDetection ? Ae(r) : []);for (var c in n.load.globals) {
-                  n.load.globals[c] && l.push(n.load.globals[c]);
-                }e.registerDynamic(l, !0, function (o, i, a) {
+                    l = (n.load.deps || []).concat(n.load.cjsRequireDetection ? Ae(r) : []);for (var c in n.load.globals) n.load.globals[c] && l.push(n.load.globals[c]);e.registerDynamic(l, !0, function (o, i, a) {
                   if (o.resolve = function (t) {
                     return Ce.call(e, t, a.id);
-                  }, a.paths = [], a.require = o, !n.load.cjsDeferDepsExecute && u) for (var s = 0; s < u.length; s++) {
-                    o(u[s]);
-                  }var l = Le(a.id),
+                  }, a.paths = [], a.require = o, !n.load.cjsDeferDepsExecute && u) for (var s = 0; s < u.length; s++) o(u[s]);var l = Le(a.id),
                       c = { exports: i, args: [o, i, a, l.filename, l.dirname, at, at] },
-                      f = "(function (require, exports, module, __filename, __dirname, global, GLOBAL";if (n.load.globals) for (var d in n.load.globals) {
-                    c.args.push(o(n.load.globals[d])), f += ", " + d;
-                  }var p = at.define;at.define = void 0, at.__cjsWrapper = c, r = f + ") {" + r.replace(mr, "") + "\n}).apply(__cjsWrapper.exports, __cjsWrapper.args);";var g = _e(e, r, n.load.sourceMap, t, n.load.integrity, n.load.nonce, !1);if (g) throw g;ze(n, i), at.__cjsWrapper = void 0, at.define = p;
+                      f = "(function (require, exports, module, __filename, __dirname, global, GLOBAL";if (n.load.globals) for (var d in n.load.globals) c.args.push(o(n.load.globals[d])), f += ", " + d;var p = at.define;at.define = void 0, at.__cjsWrapper = c, r = f + ") {" + r.replace(mr, "") + "\n}).apply(__cjsWrapper.exports, __cjsWrapper.args);";var g = _e(e, r, n.load.sourceMap, t, n.load.integrity, n.load.nonce, !1);if (g) throw g;ze(n, i), at.__cjsWrapper = void 0, at.define = p;
                 }), i = o();break;case "global":
                 var l = n.load.deps || [];for (var c in n.load.globals) {
                   var f = n.load.globals[c];f && l.push(f);
                 }e.registerDynamic(l, !1, function (o, i, a) {
                   var s;if (n.load.globals) {
-                    s = {};for (var u in n.load.globals) {
-                      n.load.globals[u] && (s[u] = o(n.load.globals[u]));
-                    }
+                    s = {};for (var u in n.load.globals) n.load.globals[u] && (s[u] = o(n.load.globals[u]));
                   }var l = n.load.exports;l && (r += "\n" + fr + '["' + l + '"] = ' + l + ";");var c = Ke(a.id, l, s, n.load.encapsulateGlobal),
                       f = _e(e, r, n.load.sourceMap, t, n.load.integrity, n.load.nonce, !0);if (f) throw f;var d = c();return ze(n, d), d;
                 }), i = o();break;default:
@@ -692,20 +615,16 @@ System.register([], function (_export, _context) {
           var r = e.split("!")[0];t.file && t.file != e || (t.file = r + "!transpiled"), (!t.sources || t.sources.length <= 1 && (!t.sources[0] || t.sources[0] === e)) && (t.sources = [r]);
         }function Xe(e, r, n, o, i) {
           if (!e.transpiler) throw new TypeError("Unable to dynamically transpile ES module\n   A loader plugin needs to be configured via `SystemJS.config({ transpiler: 'transpiler-module' })`.");if (o.load.deps) {
-            for (var a = "", s = 0; s < o.load.deps.length; s++) {
-              a += 'import "' + o.load.deps[s] + '"; ';
-            }r = a + r;
+            for (var a = "", s = 0; s < o.load.deps.length; s++) a += 'import "' + o.load.deps[s] + '"; ';r = a + r;
           }return e.import.call(e, e.transpiler).then(function (t) {
             if (t.__useDefault && (t = t.default), !t.translate) throw new Error(e.transpier + " is not a valid transpiler plugin.");return t === o.pluginModule ? load.source : ("string" == typeof o.load.sourceMap && (o.load.sourceMap = JSON.parse(o.load.sourceMap)), o.pluginLoad = o.pluginLoad || { name: n, address: n, source: r, metadata: o.load }, o.load.deps = o.load.deps || [], Promise.resolve(t.translate.call(e, o.pluginLoad, o.traceOpts)).then(function (e) {
-              var t = o.load.sourceMap;return t && "object" == (typeof t === "undefined" ? "undefined" : _typeof(t)) && Ze(n, t), "esm" === o.load.format && Ge(e) && (o.load.format = "register"), e;
+              var t = o.load.sourceMap;return t && "object" == typeof t && Ze(n, t), "esm" === o.load.format && Ge(e) && (o.load.format = "register"), e;
             }));
           }, function (e) {
             throw t(e, "Unable to load transpiler to transpile " + n);
           });
         }function Ye(e, t, r) {
-          for (var n, o = t.split("."); o.length > 1;) {
-            n = o.shift(), e = e[n] = e[n] || {};
-          }n = o.shift(), void 0 === e[n] && (e[n] = r);
+          for (var n, o = t.split("."); o.length > 1;) n = o.shift(), e = e[n] = e[n] || {};n = o.shift(), void 0 === e[n] && (e[n] = r);
         }function Qe(e, t) {
           var r = e.match(vr);if (r) for (var n = r[0].match(yr), o = 0; o < n.length; o++) {
             var i = n[o],
@@ -818,9 +737,7 @@ System.register([], function (_export, _context) {
         }(), nt) {
           var Pt = [],
               _t = window.onerror;window.onerror = function (e, t) {
-            for (var r = 0; r < Pt.length; r++) {
-              if (Pt[r].src === t) return void Pt[r].err(e);
-            }_t.apply(this, arguments);
+            for (var r = 0; r < Pt.length; r++) if (Pt[r].src === t) return void Pt[r].err(e);_t.apply(this, arguments);
           };
         }var Mt,
             Ct,
@@ -841,26 +758,20 @@ System.register([], function (_export, _context) {
             $t = "\n//# sourceMappingURL=data:application/json;base64,",
             Bt = 0,
             Wt = !1;nt && "undefined" != typeof document && document.getElementsByTagName && (window.chrome && window.chrome.extension || navigator.userAgent.match(/^Node\.js/) || (Wt = !0));var Gt,
-            Ht = function Ht(e) {
+            Ht = function (e) {
           function t(r, n, o, i) {
-            if ("object" == (typeof r === "undefined" ? "undefined" : _typeof(r)) && !(r instanceof Array)) return t.apply(null, Array.prototype.splice.call(arguments, 1, arguments.length - 1));if ("string" == typeof r && "function" == typeof n && (r = [r]), !(r instanceof Array)) {
+            if ("object" == typeof r && !(r instanceof Array)) return t.apply(null, Array.prototype.splice.call(arguments, 1, arguments.length - 1));if ("string" == typeof r && "function" == typeof n && (r = [r]), !(r instanceof Array)) {
               if ("string" == typeof r) {
                 var a = e.decanonicalize(r, i),
                     s = e.get(a);if (!s) throw new Error('Module not already loaded loading "' + r + '" as ' + a + (i ? ' from "' + i + '".' : "."));return s.__useDefault ? s.default : s;
               }throw new TypeError("Invalid require");
-            }for (var u = [], l = 0; l < r.length; l++) {
-              u.push(e.import(r[l], i));
-            }Promise.all(u).then(function (e) {
-              for (var t = 0; t < e.length; t++) {
-                e[t] = e[t].__useDefault ? e[t].default : e[t];
-              }n && n.apply(null, e);
+            }for (var u = [], l = 0; l < r.length; l++) u.push(e.import(r[l], i));Promise.all(u).then(function (e) {
+              for (var t = 0; t < e.length; t++) e[t] = e[t].__useDefault ? e[t].default : e[t];n && n.apply(null, e);
             }, o);
           }function r(r, n, o) {
             function i(r, i, l) {
-              for (var c = [], f = 0; f < n.length; f++) {
-                c.push(r(n[f]));
-              }if (l.uri = l.id, l.config = R, -1 !== u && c.splice(u, 0, l), -1 !== s && c.splice(s, 0, i), -1 !== a) {
-                var d = function d(n, o, i) {
+              for (var c = [], f = 0; f < n.length; f++) c.push(r(n[f]));if (l.uri = l.id, l.config = R, -1 !== u && c.splice(u, 0, l), -1 !== s && c.splice(s, 0, i), -1 !== a) {
+                var d = function (n, o, i) {
                   return "string" == typeof n && "function" != typeof o ? r(n) : t.call(e, n, o, i, l.id);
                 };d.toUrl = function (t) {
                   return e.normalizeSync(t, l.id);
@@ -909,17 +820,15 @@ System.register([], function (_export, _context) {
           return f.prototype.import.apply(this, arguments).then(function (e) {
             return e.__useDefault ? e.default : e;
           });
-        };for (var xr = ["baseURL", "map", "paths", "packages", "packageConfigPaths", "depCache", "meta", "bundles", "transpiler", "warnings", "pluginFirst", "production", "wasm"], Or = "undefined" != typeof Proxy, Sr = 0; Sr < xr.length; Sr++) {
-          (function (e) {
-            Object.defineProperty(Ve.prototype, e, { get: function get() {
-                var t = be(this[Ot], e);return Or && "object" == (typeof t === "undefined" ? "undefined" : _typeof(t)) && (t = new Proxy(t, { set: function set(t, r) {
-                    throw new Error("Cannot set SystemJS." + e + '["' + r + '"] directly. Use SystemJS.config({ ' + e + ': { "' + r + '": ... } }) rather.');
-                  } })), t;
-              }, set: function set(t) {
-                throw new Error("Setting `SystemJS." + e + "` directly is no longer supported. Use `SystemJS.config({ " + e + ": ... })`.");
-              } });
-          })(xr[Sr]);
-        }Ve.prototype.delete = function (e) {
+        };for (var xr = ["baseURL", "map", "paths", "packages", "packageConfigPaths", "depCache", "meta", "bundles", "transpiler", "warnings", "pluginFirst", "production", "wasm"], Or = "undefined" != typeof Proxy, Sr = 0; Sr < xr.length; Sr++) (function (e) {
+          Object.defineProperty(Ve.prototype, e, { get: function () {
+              var t = be(this[Ot], e);return Or && "object" == typeof t && (t = new Proxy(t, { set: function (t, r) {
+                  throw new Error("Cannot set SystemJS." + e + '["' + r + '"] directly. Use SystemJS.config({ ' + e + ': { "' + r + '": ... } }) rather.');
+                } })), t;
+            }, set: function (t) {
+              throw new Error("Setting `SystemJS." + e + "` directly is no longer supported. Use `SystemJS.config({ " + e + ": ... })`.");
+            } });
+        })(xr[Sr]);Ve.prototype.delete = function (e) {
           tt(this, "delete"), this.registry.delete(e);
         }, Ve.prototype.get = function (e) {
           return tt(this, "get"), this.registry.get(e);

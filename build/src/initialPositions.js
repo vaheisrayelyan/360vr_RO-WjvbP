@@ -1,13 +1,10 @@
-"use strict";
-
 System.register([], function (_export, _context) {
    "use strict";
 
-   var initialPositions;
    return {
       setters: [],
       execute: function () {
-         _export("initialPositions", initialPositions = [{
+         const initialPositions = [{
             "x": -1.2,
             "y": 0,
             "z": 0.2
@@ -5047,7 +5044,7 @@ System.register([], function (_export, _context) {
             "x": 2.2,
             "y": 0,
             "z": 0.6
-         }]);
+         }];
 
          _export("initialPositions", initialPositions);
       }

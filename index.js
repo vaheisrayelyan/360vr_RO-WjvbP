@@ -2,60 +2,93 @@ import * as RODIN from 'rodin/core';
 import {screen} from './src/Screen.js';
 import './src/Socket.js';
 
+import changeEnvSocket from './src/Socket.js';
+
+
+var textureScene1 = RODIN.Loader.loadTexture('images/scene1.jpg');
+var textureScene2 = RODIN.Loader.loadTexture('images/scene2.jpg');
+var textureScene3 = RODIN.Loader.loadTexture('images/scene3.jpg');
+
+
+
+export default function changeEnvPublic(texture, rot_angle) {
+    var textureSoc;
+    if(texture == 1) {
+        textureSoc = textureScene1;
+    }
+    else if(texture == 2) {
+        exp360.remove(hotspot1);
+        textureSoc = textureScene2;
+        exp360.add(hotspot2);
+        exp360.add(hotspot3);
+    }
+    else if(texture == 3) {
+        textureSoc = textureScene3;
+    }
+    sceneMain._threeObject.material.map = textureSoc;
+    sceneMain.rotation.y = rot_angle;
+    console.log(texture + rot_angle);
+}
+
+function changeEnv(texture, rot_angle) {
+    sceneMain._threeObject.material.map = texture;
+    sceneMain.rotation.y = rot_angle;
+    var textureNum;
+    if(texture == textureScene1) {
+        textureNum = 1;
+    }
+    else if(texture == textureScene2) {
+        textureNum = 2;
+        exp360.add(hotspot2);
+        exp360.add(hotspot3);
+    }
+    else if(texture == textureScene3) {
+        textureNum = 3;
+    }
+    changeEnvSocket(textureNum, rot_angle);
+    
+}
+
 RODIN.start();
-//RODIN.Scene.add(new RODIN.Sculpt(new THREE.AmbientLight(0xffffff, 0.1)));
-
-/**
- * Create spherical skybox
- * Radius is 72 meters
- * Number of segments is 36, by horizontal and vertical axes
- * Set material rendering side to back
- * Load texture from URL
- * Add to the scene
- */
-
-
 
 const exp360 = new RODIN.Sculpt();
 RODIN.Scene.add(exp360);
 
-var hotspotObject = new RODIN.Plane(1,0.555, new THREE.MeshBasicMaterial({
+var hotspot = new RODIN.Plane(10,5.55, new THREE.MeshBasicMaterial({
     map: RODIN.Loader.loadTexture("images/hotspot.png"),
         transparent: true
 }));
 
-var hotspot1 = hotspotObject;
-var hotspot2 = hotspotObject;
+var hotspot1 = hotspot;
+var hotspot2 = hotspot;
+var hotspot3 = hotspot;
+var hotspot4 = hotspot;
 
-hotspot1.position.set(3.4, 0, 3.4);
+
+hotspot1.position.set(24, -10, 24);
 hotspot1.rotation.x = -Math.PI / 2;
 hotspot1.rotation.z = -Math.PI / 1.4;
 
-hotspot2.position.set(2, 0, 2);
+hotspot2.position.set(24, -10, 24);
 hotspot2.rotation.x = -Math.PI / 2;
 hotspot2.rotation.z = -Math.PI / 1.4;
 
+hotspot3.position.set(28, -10, 28);
+hotspot3.rotation.x = -Math.PI / 2;
+hotspot3.rotation.z = -Math.PI / 1.4;
 
-const scene1 = new RODIN.Sphere(72, 36, 36,
+
+const sceneMain = new RODIN.Sphere(72, 36, 36,
     new THREE.MeshBasicMaterial({
-        map: RODIN.Loader.loadTexture('images/scene1.jpg')
+        map: textureScene1
     }));
     
-scene1.scale.set(-1,1,1);
+sceneMain.scale.set(-1,1,1);
 exp360.add(hotspot1);
-exp360.add(hotspot2);
 
-const scene2 = new RODIN.Sphere(72, 36, 36,
-    new THREE.MeshBasicMaterial({
-        map: RODIN.Loader.loadTexture('images/scene2.jpg')
-    }));
-scene2.scale.set(-1,1,1);
+hotspot1.on(RODIN.CONST.GAMEPAD_BUTTON_DOWN, function (evt) {
+    exp360.remove(hotspot1);
+    changeEnv(textureScene2, -Math.PI / 1.5);
+});
 
-const scene3 = new RODIN.Sphere(72, 36, 36,
-    new THREE.MeshBasicMaterial({
-        map: RODIN.Loader.loadTexture('images/scene3.jpg')
-    }));
-scene3.scale.set(-1,1,1);
-
-exp360.add(scene1);
-//vahe
+exp360.add(sceneMain);
